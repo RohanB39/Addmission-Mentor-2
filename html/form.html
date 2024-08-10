@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addmission Mentor</title>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="javascript:sendEmail()" method="post">
+            <h3>Get In Touch</h3>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email Address" required>
+            <input type="text" id="phone" placeholder="Your Mobile Number" required>
+            <textarea id="message" rows="4" placeholder="Type your message here"></textarea>
+            <textarea id="default" rows="4"
+                placeholder="The information will send to the team 'ADDMISSION MENTOR'"
+                readonly></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+    function sendEmail() {
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var message = $("#message").val();
+        var body = 'Name: ' + name + '<br>Email: ' + email + '<br>Phone: ' + phone + '<br>Message: ' + message;
+        Email.send({
+            Host: "smtp.elasticemail.com",
+            Username: "rohnbnkr@gmail.com",
+            Password: "C4EBAFD2E91043D4E99A29F02D261F7E215C",
+            To: 'pratiknale07@gmail.com',
+            From: "rohnbnkr@gmail.com",
+            Subject: "New Contact Enquiry From: " + name,
+            Body: body
+        }).then(
+            message => {
+                if (message == 'OK') {
+                    alert("Thank you your responce will be recorded")
+                }
+                else {
+                    console.error(message);
+                    alert('There is error to sending message. ')
+                }
+            }
+        );
+    }
+</script>
+</html>
